@@ -72,7 +72,7 @@ func (g *GenScheme) Imports(c *generator.Context) (imports []string) {
 				imports = append(imports, fmt.Sprintf("%s \"%s\"", groupAlias, path.Vendorless(packagePath)))
 				break
 			} else {
-				imports = append(imports, fmt.Sprintf("%s%s \"%s\"", groupAlias, version.Version.NonEmpty(), path.Vendorless(packagePath)))
+				imports = append(imports, fmt.Sprintf("%s%s \"%s\"", groupAlias, strings.ToLower(version.Version.NonEmpty()), path.Vendorless(packagePath)))
 			}
 		}
 	}
