@@ -22,7 +22,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/golang/glog"
 	"k8s.io/gengo/generator"
 	"k8s.io/gengo/namer"
 	"k8s.io/gengo/types"
@@ -65,9 +64,6 @@ func (g *genFakeForGroup) Namers(c *generator.Context) namer.NameSystems {
 func (g *genFakeForGroup) Imports(c *generator.Context) (imports []string) {
 	imports = g.imports.ImportLines()
 	if len(g.types) != 0 {
-
-		//groupClientPackage := filepath.Join(g.fakeClientsetPackage, "typed", group, strings.ToLower(version.NonEmpty()))
-		glog.Infof("%s \"%s\"", filepath.Base(g.realClientPackage), strings.ToLower(g.realClientPackage))
 		imports = append(imports, fmt.Sprintf("%s \"%s\"", strings.ToLower(filepath.Base(g.realClientPackage)), g.realClientPackage))
 	}
 	return imports
